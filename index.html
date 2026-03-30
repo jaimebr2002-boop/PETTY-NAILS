@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PETTY NAILS | Nail Bar en Oviedo</title>
+    <link rel="icon" href="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774878855/303117863_576206784305823_1274713842074255158_n_ubodze.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774878855/303117863_576206784305823_1274713842074255158_n_ubodze.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F2C4CE;
+            --gold: #C9A96E;
+            --dark: #111111;
+            --dark-light: #1A1A1A;
+            --light: #FAF7F5;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Jost', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--light); color: var(--dark); overflow-x: hidden; }
+        
+        /* Typography */
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; }
+        .title { font-size: clamp(2.5rem, 5vw, 3.5rem); text-align: center; margin-bottom: 1rem; }
+        .subtitle { text-align: center; color: #666; max-width: 600px; margin: 0 auto 3rem; font-size: 1.1rem; }
+        .dark-section .title { color: var(--light); }
+        .dark-section .subtitle { color: rgba(250,247,245,0.7); }
+        
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; border-radius: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: 1px solid transparent; }
+        .btn-primary { background: var(--gold); color: var(--dark); }
+        .btn-primary:hover { background: transparent; color: var(--gold); border-color: var(--gold); }
+        .btn-outline { background: transparent; color: var(--light); border-color: rgba(250,247,245,0.3); }
+        .btn-outline:hover { border-color: var(--light); background: rgba(250,247,245,0.05); }
+        
+        /* Navbar */
+        .navbar { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; transition: all 0.3s ease; }
+        .navbar.scrolled { background: rgba(17,17,17,0.95); backdrop-filter: blur(10px); padding: 15px 40px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-family: var(--font-heading); font-size: 1.8rem; color: var(--light); text-decoration: none; letter-spacing: 2px; display: flex; align-items: center; gap: 12px; }
+        .logo-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--gold); }
+        .logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--light); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { padding: 8px 20px; font-size: 0.8rem; }
+        .hamburger { display: none; background: none; border: none; color: var(--light); cursor: pointer; }
+        
+        /* Hero */
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.8)), url('https://res.cloudinary.com/dfbsqy5ul/image/upload/c_fill,w_1920,h_1080,z_0.6/v1774884368/622120368_18073889429101096_7985211032328077613_n._obonsu.webp') center/cover no-repeat var(--dark); color: var(--light); text-align: center; padding: 0 20px; overflow: hidden; }
+        .grain { position: absolute; inset: 0; opacity: 0.05; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; margin-bottom: 2rem; border: 1px solid rgba(201,169,110,0.3); }
+        .badge svg { color: var(--gold); width: 16px; height: 16px; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1; margin-bottom: 1.5rem; font-weight: 400; }
+        .hero p { font-size: clamp(1.1rem, 2vw, 1.3rem); margin: 0 auto 2.5rem; color: rgba(250,247,245,0.8); }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        
+        /* About */
+        .about { padding: 6rem 20px; background: var(--light); }
+        .about-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text p { font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem; }
+        .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .pillar { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-top: 3px solid var(--gold); }
+        .pillar-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .pillar h4 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        
+        /* Services */
+        .services { padding: 6rem 20px; background: var(--dark-light); }
+        .services-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .service-card { background: var(--dark); padding: 3rem 2rem; border-radius: 8px; border: 1px solid rgba(201,169,110,0.1); transition: all 0.4s ease; text-align: center; }
+        .service-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--light); }
+        .service-card p { color: rgba(250,247,245,0.7); font-size: 1rem; line-height: 1.6; }
+        .services-cta { text-align: center; margin-top: 4rem; }
+        
+        /* Results */
+        .results { padding: 6rem 20px; background: var(--primary); }
+        .results-grid { max-width: 1200px; margin: 0 auto 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .result-card { height: 320px; border-radius: 12px; position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: transform 0.4s ease; }
+        .result-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .result-card:hover { transform: translateY(-10px); }
+        .result-card:hover img { transform: scale(1.05); }
+        .result-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .result-card:hover::after { opacity: 1; }
+        
+        /* Reviews */
+        .reviews { padding: 6rem 20px; background: var(--dark); overflow: hidden; }
+        .carousel { max-width: 1200px; margin: 0 auto; position: relative; }
+        .carousel-track { display: flex; gap: 2rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 2rem; }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .review-card { flex: 0 0 100%; scroll-snap-align: center; background: var(--dark-light); padding: 3rem 2rem; border-radius: 8px; border: 1px solid rgba(250,247,245,0.05); display: flex; flex-direction: column; }
+        @media (min-width: 768px) { .review-card { flex: 0 0 calc(50% - 1rem); } }
+        @media (min-width: 1024px) { .review-card { flex: 0 0 calc(33.333% - 1.33rem); } }
+        .stars { color: var(--gold); margin-bottom: 1.5rem; letter-spacing: 2px; }
+        .review-text { font-size: 1.1rem; line-height: 1.6; font-style: italic; margin-bottom: 2rem; flex-grow: 1; color: var(--light); }
+        .review-author { font-family: var(--font-heading); font-size: 1.2rem; color: var(--gold); }
+        .reviews-cta { text-align: center; margin-top: 2rem; }
+        
+        .carousel-controls { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
+        .carousel-btn { background: var(--dark-light); color: var(--light); border: 1px solid rgba(250,247,245,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
+        .carousel-btn:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+        
+        /* Visit */
+        .visit { padding: 6rem 20px; background: var(--light); }
+        .visit-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .contact-info { background: #fff; padding: 3rem; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+        .contact-item { display: flex; gap: 1.5rem; margin-bottom: 2rem; }
+        .contact-item:last-child { margin-bottom: 0; }
+        .contact-icon { color: var(--gold); }
+        .contact-text h4 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .contact-text p, .contact-text a { color: #555; text-decoration: none; line-height: 1.6; }
+        .contact-text a:hover { color: var(--gold); }
+        
+        /* Booking */
+        .booking { padding: 6rem 20px; background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%); }
+        .booking-container { max-width: 800px; margin: 0 auto; background: var(--dark-light); padding: 4rem; border-radius: 12px; border: 1px solid rgba(201,169,110,0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: rgba(250,247,245,0.8); text-transform: uppercase; letter-spacing: 1px; }
+        .form-control { width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: var(--light); font-family: var(--font-body); font-size: 1rem; transition: border-color 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.08); }
+        .form-control option { background: var(--dark-light); color: var(--light); }
+        .booking-alt { text-align: center; margin-top: 2rem; }
+        
+        /* Footer */
+        .footer { background: var(--dark); color: rgba(250,247,245,0.6); padding: 5rem 20px 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-bottom: 3rem; text-align: left; }
+        .footer-col h4 { color: var(--light); font-size: 1.2rem; margin-bottom: 1.5rem; font-family: var(--font-heading); letter-spacing: 1px; }
+        .footer-logo { font-family: var(--font-heading); font-size: 1.8rem; color: var(--light); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; text-decoration: none; letter-spacing: 2px; }
+        .footer-logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+        .footer-logo span { color: var(--gold); }
+        .footer-tagline { font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        .social-links { display: flex; gap: 1rem; }
+        .social-links a { color: var(--light); transition: color 0.3s, transform 0.3s; display: inline-flex; }
+        .social-links a:hover { color: var(--gold); transform: translateY(-3px); }
+        .social-links svg { width: 22px; height: 22px; fill: currentColor; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-links a { color: rgba(250,247,245,0.6); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-info { display: flex; flex-direction: column; gap: 1rem; }
+        .footer-info p { display: flex; align-items: flex-start; gap: 12px; line-height: 1.5; margin: 0; }
+        .footer-info svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; font-size: 0.9rem; }
+        
+        /* WhatsApp */
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 99; transition: transform 0.3s ease; }
+        .whatsapp-btn:hover { transform: scale(1.1); }
+        
+        /* Animations */
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        
+        /* Mobile */
+        @media (max-width: 992px) {
+            .nav-links { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(17,17,17,0.98); flex-direction: column; padding: 2rem 0; clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: clip-path 0.4s ease; }
+            .nav-links.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            .hamburger { display: block; }
+            .navbar { padding: 20px; }
+            .navbar.scrolled { padding: 15px 20px; }
+            .about-container, .visit-container { grid-template-columns: 1fr; }
+            .booking-container { padding: 2rem; }
+        }
+        @media (max-width: 576px) {
+            .pillars { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#inicio" class="logo">
+            <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774878855/303117863_576206784305823_1274713842074255158_n_ubodze.jpg" alt="Petty Nails Logo" class="logo-img">
+            PETTY<span>NAILS</span>
+        </a>
+        <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotras">Nosotras</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#resenas">Reseñas</a>
+            <a href="#visitanos">Visítanos</a>
+            <a href="#reserva" class="btn btn-primary nav-cta">Reservar cita</a>
+        </div>
+        <button class="hamburger" aria-label="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section id="inicio" class="hero dark-section">
+        <div class="grain"></div>
+        <div class="hero-content">
+            <div class="badge animate-on-scroll">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <strong>4,8</strong> - Más de 50 reseñas en Google
+            </div>
+            <h1 class="animate-on-scroll delay-1">Tus uñas.<br>Tu obra de arte.</h1>
+            <p class="animate-on-scroll delay-2">Nail bar profesional en el corazón de Oviedo. Más de 10 años cuidando tus manos y pies.</p>
+            <div class="hero-buttons animate-on-scroll delay-3">
+                <a href="#reserva" class="btn btn-primary">Reserva tu cita</a>
+                <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="nosotras" class="about">
+        <div class="about-container">
+            <div class="about-text animate-on-scroll">
+                <h2 class="title" style="text-align: left;">Más de 10 años haciendo que te sientas especial</h2>
+                <p>En Petty Nails creemos que el cuidado de tus manos y pies es un momento para ti. Nuestro compromiso es ofrecerte una profesionalidad impecable, un asesoramiento personalizado y un ambiente donde te sientas como en casa.</p>
+                <p>Trabajamos con productos de alta calidad para garantizar resultados que duran. Por eso nuestras clientas nos eligen y repiten año tras año.</p>
+            </div>
+            <div class="pillars animate-on-scroll delay-1">
+                <div class="pillar">
+                    <div class="pillar-icon">🏆</div>
+                    <h4>+10 años</h4>
+                    <p style="color:#666; font-size:0.95rem;">De experiencia</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">⭐</div>
+                    <h4>4,8 en Google</h4>
+                    <p style="color:#666; font-size:0.95rem;">Excelencia probada</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">💛</div>
+                    <h4>Clientas de por vida</h4>
+                    <p style="color:#666; font-size:0.95rem;">Confianza absoluta</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">✨</div>
+                    <h4>Asesoramiento</h4>
+                    <p style="color:#666; font-size:0.95rem;">100% personalizado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="servicios" class="services dark-section">
+        <h2 class="title animate-on-scroll">Nuestros servicios</h2>
+        <p class="subtitle animate-on-scroll">Cuidado profesional y diseño exclusivo para tus manos y pies.</p>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">💅</div>
+                <h3>Manicura Semipermanente</h3>
+                <p>Duración y color que no falla. Uñas perfectas durante semanas con un acabado brillante y resistente.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-1">
+                <div class="service-icon">🦶</div>
+                <h3>Pedicura Semipermanente</h3>
+                <p>Pies impecables que duran semanas. Tratamiento completo y esmaltado de larga duración.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-2">
+                <div class="service-icon">✨</div>
+                <h3>Uñas de Gel</h3>
+                <p>Diseños personalizados para cada ocasión. Extensiones duraderas con un aspecto natural y elegante.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">🌸</div>
+                <h3>Manicura Spa</h3>
+                <p>Cuidado completo para tus manos. Exfoliación, hidratación profunda y masaje relajante.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-1">
+                <div class="service-icon">👑</div>
+                <h3>Nail Art</h3>
+                <p>Diseños únicos adaptados a tu estilo. Desde minimalismo hasta creaciones complejas a mano alzada.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-2">
+                <div class="service-icon">🧴</div>
+                <h3>Limpieza de Pies</h3>
+                <p>Tratamiento profesional de podología estética. Salud y belleza para tus pies en una sola sesión.</p>
+            </div>
+        </div>
+        <div class="services-cta animate-on-scroll">
+            <p style="color: var(--light); margin-bottom: 1rem;">¿No ves lo que buscas?</p>
+            <a href="tel:667446580" class="btn btn-outline">Llámanos</a>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section id="resultados" class="results">
+        <h2 class="title animate-on-scroll" style="color: var(--dark);">El trabajo habla por sí solo</h2>
+        <p class="subtitle animate-on-scroll" style="color: var(--dark);">Explora nuestros estilos más solicitados.</p>
+        <div class="results-grid">
+            <div class="result-card animate-on-scroll">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774879886/621016675_18056002379380515_3533151394769310781_n._lgc3sz.jpg" alt="Resultado Petty Nails 1" loading="lazy">
+            </div>
+            <div class="result-card animate-on-scroll delay-1">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774879892/656787710_18129418624558016_1678303387402491501_n._qutrb7.jpg" alt="Resultado Petty Nails 2" loading="lazy">
+            </div>
+            <div class="result-card animate-on-scroll delay-2">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774879892/656042168_18073068086647222_8353919241321721446_n._befyjl.jpg" alt="Resultado Petty Nails 3" loading="lazy">
+            </div>
+            <div class="result-card animate-on-scroll">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774879887/654123395_18120058846719270_2364328609649443702_n._ybeme6.jpg" alt="Resultado Petty Nails 4" loading="lazy">
+            </div>
+            <div class="result-card animate-on-scroll delay-1">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774879887/655917013_18061729169668550_2651428935806754356_n._x7posj.jpg" alt="Resultado Petty Nails 5" loading="lazy">
+            </div>
+            <div class="result-card animate-on-scroll delay-2">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774879886/623535731_18101679232871197_4705628725319230602_n._xlhcag.jpg" alt="Resultado Petty Nails 6" loading="lazy">
+            </div>
+            <div class="result-card animate-on-scroll">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/w_1920,h_1080,c_fill,g_north/v1774879887/654431534_18095180033318751_4767749214334449340_n._caf6zn.jpg" alt="Resultado Petty Nails 7" loading="lazy">
+            </div>
+            <div class="result-card animate-on-scroll delay-1">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774879887/642632329_17877318156412917_3149125839105204507_n._urhuez.jpg" alt="Resultado Petty Nails 8" loading="lazy">
+            </div>
+        </div>
+        <p style="text-align: center; color: var(--dark); font-weight: 500;" class="animate-on-scroll">Reserva y descubre tu diseño ideal. Te asesoramos en cada detalle.</p>
+    </section>
+
+    <!-- Reviews -->
+    <section id="resenas" class="reviews dark-section">
+        <h2 class="title animate-on-scroll">Lo que dicen nuestras clientas</h2>
+        <p class="subtitle animate-on-scroll">Tu satisfacción es nuestra mejor carta de presentación.</p>
+        <div class="carousel animate-on-scroll">
+            <div class="carousel-track" id="review-track">
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Llevo más de un año yendo a Petty Nails y no puedo estar más contenta. Por fin un lugar de confianza con unas grandes profesionales."</p><h4 class="review-author">Elena Galán</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Súper profesionales, detallistas, cuidadosas y encantadoras. Te aconsejan y se adaptan a tus gustos. Las recomiendo 100%."</p><h4 class="review-author">M.F. Solis</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Hacen las mejores uñas de todo Oviedo."</p><h4 class="review-author">Marta Quirós González</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Un lugar muy confortable, con profesionales muy buenas y competentes, atentas y muy cariñosas. Llevo muchos años y estoy encantada."</p><h4 class="review-author">Adelapaz González</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Personal súper profesional y agradable. Servicio impecable. Lugar de trabajo muy limpio. Resultado inmejorable. Uñas súper bonitas y duraderas."</p><h4 class="review-author">Rosa Gómez</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Llevo 10 años siendo clienta suya. Son muy profesionales y el trato es excelente."</p><h4 class="review-author">Ángeles Fernández</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Especialistas en maquillar tus uñas de manera impecable y exquisita. Cuidan tus uñas y piel. Actualizadas en las tendencias y trato amable."</p><h4 class="review-author">Olga Crespo</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Trato EXCELENTE, productos de ALTA CALIDAD y terminación del trabajo: IM-PRESIONANTE."</p><h4 class="review-author">Conchi Tuero</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Las mejores, grandes profesionales y te sientes como en casa. Estoy encantada."</p><h4 class="review-author">Monica Oviedo</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Mis uñas siempre triunfan. Te asesoran de maravilla y todas las chicas son encantadoras."</p><h4 class="review-author">Luisa De Dego</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Siempre que necesito hacerme las uñas en Oviedo este es mi lugar. Buen precio, céntrico, agradables… lo tienen todo. Recomendable 100%."</p><h4 class="review-author">Andrea Suárez Rilo</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Me caso mañana y el cambio que mis manos experimentaron es espectacular. Uñas en blanco degradado bellísimas. Gracias."</p><h4 class="review-author">Maisa Ordóñez Abad</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Fabuloso. Llevo muchos años haciendo las uñas y otros servicios. Vivo a varios km de Oviedo pero no me importa venir."</p><h4 class="review-author">Guadalupe Del Valle</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Fantásticas. Los pies me los dejaron perfectos, mejor que en el podólogo. Una sala súper tranquila con butacas que dan masaje."</p><h4 class="review-author">Sandra Rueda</h4></div>
+                <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Buena relación calidad-precio y se adaptan a tu horario. Son estupendas."</p><h4 class="review-author">ANA MIYAR</h4></div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prev-review" aria-label="Anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="carousel-btn" id="next-review" aria-label="Siguiente">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="reviews-cta animate-on-scroll">
+            <a href="https://www.google.com/maps/place/PETTY+NAILS+-+Oviedo/@43.3631776,-5.8486822,16z/data=!4m8!3m7!1s0xd368ce559def4bb:0x8b50fd5432fb53e4!8m2!3d43.3631737!4d-5.8461073!9m1!1b1!16s%2Fg%2F11b7fh721m?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-outline">Deja tu reseña en Google</a>
+        </div>
+    </section>
+
+    <!-- Visit Us -->
+    <section id="visitanos" class="visit">
+        <h2 class="title animate-on-scroll">Nos encontrarás aquí</h2>
+        <div class="visit-container">
+            <div class="contact-info animate-on-scroll">
+                <div class="contact-item">
+                    <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <div class="contact-text">
+                        <h4>Dirección</h4>
+                        <p>C. de Argüelles, 2<br>33003 Oviedo, Asturias</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <div class="contact-text">
+                        <h4>Teléfono</h4>
+                        <a href="tel:667446580">667 446 580</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <div class="contact-text">
+                        <h4>Horario</h4>
+                        <p>Lunes a Viernes: 9:00 – 18:30<br>Sábado: 9:00 – 14:00<br>Domingo: Cerrado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container animate-on-scroll delay-1">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2902.8!2d-5.8486822!3d43.3631776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd368ce559def4bb%3A0x8b50fd5432fb53e4!2sPETTY%20NAILS%20-%20Oviedo!5e0!3m2!1ses!2ses!4v1" width="100%" height="400" style="border:0; border-radius:12px; box-shadow: 0 15px 40px rgba(0,0,0,0.05);" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking -->
+    <section id="reserva" class="booking dark-section">
+        <h2 class="title animate-on-scroll">¿Lista para mimarte?</h2>
+        <p class="subtitle animate-on-scroll">Reserva tu cita llamándonos o enviándonos un mensaje. Te esperamos.</p>
+        <div class="booking-container animate-on-scroll" style="text-align: center;">
+            <div class="booking-alt" style="margin-top: 0;">
+                <p style="margin-bottom: 2rem; font-size: 1.2rem; color: var(--light);">Para ofrecerte la mejor atención y encontrar el hueco perfecto para ti, gestionamos todas nuestras citas por teléfono o WhatsApp.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="tel:667446580" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Llamar al 667 446 580
+                    </a>
+                    <a href="https://wa.me/34667446580" target="_blank" class="btn btn-outline">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        Enviar WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="#inicio" class="footer-logo">
+                    <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1774878855/303117863_576206784305823_1274713842074255158_n_ubodze.jpg" alt="Petty Nails Logo" class="footer-logo-img">
+                    <div>PETTY<span>NAILS</span></div>
+                </a>
+                <p class="footer-tagline">Tu nail bar de confianza en Oviedo desde hace más de 10 años.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/petty__nails/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Petty-Nails-100057495187515/?locale=es_ES" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#nosotras">Nosotras</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#resultados">Resultados</a>
+                    <a href="#resenas">Reseñas</a>
+                    <a href="#visitanos">Visítanos</a>
+                    <a href="#reserva">Reserva</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto y Horario</h4>
+                <div class="footer-info">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        C. de Argüelles, 2, 33003 Oviedo, Asturias
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:667446580" style="color: inherit; text-decoration: none; transition: color 0.3s;">667 446 580</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>L-V: 9:00 – 18:30<br>Sáb: 9:00 – 14:00<br>Dom: Cerrado</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Petty Nails – Oviedo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/34667446580" target="_blank" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Mobile Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Reviews Carousel Auto-Scroll and Controls
+        const track = document.getElementById('review-track');
+        const prevBtn = document.getElementById('prev-review');
+        const nextBtn = document.getElementById('next-review');
+        let autoScrollInterval;
+
+        function getCardWidth() {
+            const card = track.querySelector('.review-card');
+            return card ? card.offsetWidth + 32 : 0; // width + gap
+        }
+
+        function scrollNext() {
+            const cardWidth = getCardWidth();
+            if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 10) {
+                track.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ top: 0, left: cardWidth, behavior: 'smooth' });
+            }
+        }
+
+        function scrollPrev() {
+            const cardWidth = getCardWidth();
+            if (track.scrollLeft <= 0) {
+                track.scrollTo({ top: 0, left: track.scrollWidth, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ top: 0, left: -cardWidth, behavior: 'smooth' });
+            }
+        }
+
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(scrollNext, 4000);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            stopAutoScroll();
+            scrollNext();
+            startAutoScroll();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopAutoScroll();
+            scrollPrev();
+            startAutoScroll();
+        });
+
+        // Pause on hover
+        track.addEventListener('mouseenter', stopAutoScroll);
+        track.addEventListener('mouseleave', startAutoScroll);
+
+        startAutoScroll();
+    </script>
+</body>
+</html>
